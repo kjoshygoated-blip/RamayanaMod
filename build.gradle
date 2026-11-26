@@ -14,8 +14,8 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-minecraft {
-    accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+neoForge {
+    version = "21.1.0"
     runs {
         configureEach {
             modSource project.sourceSets.main
@@ -33,9 +33,11 @@ minecraft {
             data()
         }
     }
-}
-
-dependencies {
+    mods {
+        ramayana {
+            sourceSet sourceSets.main
+        }
+    }
 }
 
 tasks.withType(ProcessResources).configureEach {
