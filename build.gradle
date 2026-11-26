@@ -24,19 +24,15 @@ neoForge {
             server()
         }
         gameTestServer {
-            type = "gameTestServer"
+            gameTestServer()
         }
         data {
             data()
-            programArguments.addAll '--mod', 'ramayana', '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-        }
-        configureEach {
-            modSource project.sourceSets.main
         }
     }
     mods {
         ramayana {
-            sourceSet(sourceSets.main)
+            sourceSet sourceSets.main
         }
     }
 }
@@ -50,7 +46,7 @@ tasks.withType(ProcessResources).configureEach {
         loader_version_range   : "[4,)",
         mod_id                 : "ramayana",
         mod_name               : "Ramayana Mod",
-        mod_license            : "【entity-MIT¦canonical_name=MIT】",
+        mod_license            : " MIT",
         mod_version            : "1.0.0",
         mod_authors            : "kartikdebest",
         mod_description        : "Become Shree Ram! Kodanda Bow, Brahmastra and all divine arrows!",
