@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'net.neoforged.gradleutils.userdev' version '7.0.170'
+    id 'net.neoforged.gradle.userdev' version '7.0.145'
 }
 
 version = "1.0.0"
@@ -47,7 +47,7 @@ tasks.withType(ProcessResources).configureEach {
         loader_version_range   : "[4,)",
         mod_id                 : "ramayana",
         mod_name               : "Ramayana Mod",
-        mod_license            : "【entity-MIT¦canonical_name=MIT】",
+        mod_license            : " MIT",
         mod_version            : "1.0.0",
         mod_authors            : "kartikdebest",
         mod_description        : "Become Shree Ram! Kodanda Bow, Brahmastra and all divine arrows!",
