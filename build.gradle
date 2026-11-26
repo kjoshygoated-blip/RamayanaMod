@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'net.neoforged.gradle.userdev' version '7.0.145'
+    id 'net.neoforged.moddev' version '2.0.78'
 }
 
 version = "1.0.0"
@@ -17,9 +17,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 neoForge {
     version = "21.1.0"
     runs {
-        configureEach {
-            modSource project.sourceSets.main
-        }
         client {
             client()
         }
@@ -27,15 +24,19 @@ neoForge {
             server()
         }
         gameTestServer {
-            gameTestServer()
+            type = "gameTestServer"
         }
         data {
             data()
+            programArguments.addAll '--mod', 'ramayana', '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        configureEach {
+            modSource project.sourceSets.main
         }
     }
     mods {
         ramayana {
-            sourceSet sourceSets.main
+            sourceSet(sourceSets.main)
         }
     }
 }
@@ -49,7 +50,7 @@ tasks.withType(ProcessResources).configureEach {
         loader_version_range   : "[4,)",
         mod_id                 : "ramayana",
         mod_name               : "Ramayana Mod",
-        mod_license            : " MIT",
+        mod_license            : "【entity-MIT¦canonical_name=MIT】",
         mod_version            : "1.0.0",
         mod_authors            : "kartikdebest",
         mod_description        : "Become Shree Ram! Kodanda Bow, Brahmastra and all divine arrows!",
