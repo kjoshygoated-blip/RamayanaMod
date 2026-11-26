@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+[[mods]]
+modId="ramayana"
+version="1.0.0"
+displayName="Ramayana Mod"
+authors="kartikdebest"
+description="Become Shree Ram! Kodanda Bow, Brahmastra and all divine arrows!"
+[[dependencies.ramayana]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.ramayana]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.22)"
+ordering="NONE"
+side="BOTH"
