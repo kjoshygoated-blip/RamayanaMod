@@ -23,9 +23,6 @@ neoForge {
         server {
             server()
         }
-        gameTestServer {
-            gameTestServer()
-        }
         data {
             data()
         }
