@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'net.neoforged.gradleutils.userdev' version '7.0.+'
+    id 'net.neoforged.gradleutils.userdev' version '7.0.180'
 }
 
 version = "1.0.0"
@@ -13,26 +13,44 @@ base {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-println "Java: ${System.getProperty('java.version')} JVM: ${System.getProperty('java.vm.version')} (${System.getProperty('java.vendor')}) Arch: ${System.getProperty('os.arch')}"
 
-minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+minecraft {
+    accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+    runs {
+        configureEach {
+            modSource project.sourceSets.main
+        }
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+        gameTestServer {
+            gameTestServer()
+        }
+        data {
+            data()
+        }
+    }
+}
 
 dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-        minecraft_version      : "1.21.1",
+        minecraft_version: "1.21.1",
         minecraft_version_range: "[1.21.1,1.22)",
-        neo_version            : "21.1.0",
-        neo_version_range      : "[21.1,)",
-        loader_version_range   : "[4,)",
-        mod_id                 : "ramayana",
-        mod_name               : "Ramayana Mod",
-        mod_license            : "MIT",
-        mod_version            : "1.0.0",
-        mod_authors            : "kartikdebest",
-        mod_description        : "Become Shree Ram! Kodanda Bow, Brahmastra and all divine arrows!",
+        neo_version: "21.1.0",
+        neo_version_range: "[21.1,)",
+        loader_version_range: "[4,)",
+        mod_id: "ramayana",
+        mod_name: "Ramayana Mod",
+        mod_license: "【entity-MIT¦canonical_name=MIT】",
+        mod_version: "1.0.0",
+        mod_authors: "kartikdebest",
+        mod_description: "Become Shree Ram! Kodanda Bow, Brahmastra and all divine arrows!",
     ]
     inputs.properties replaceProperties
     filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
@@ -43,18 +61,4 @@ tasks.withType(ProcessResources).configureEach {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 21
-}
-
-jar {
-    manifest {
-        attributes([
-            "Specification-Title"   : "ramayana",
-            "Specification-Vendor"  : "kartikdebest",
-            "Specification-Version" : "1",
-            "Implementation-Title"  : project.name,
-            "Implementation-Version": project.version,
-            "Implementation-Vendor" : "kartikdebest",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
 }
